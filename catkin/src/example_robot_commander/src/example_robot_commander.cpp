@@ -52,11 +52,54 @@ for (int i=0;i<niters;i++) {
     cmd_publisher.publish(twist_cmd); // really, should only need to publish this once, but no hard done
     sleep_timer.sleep(); // sleep for (remainder of) 10m
 }
-ROS_INFO("my work here is done");
+
+
+twist_cmd.linear.x = 0.4;
+twist_cmd.angular.z =  0.000;
+ niters=3000;// 50sec
+ROS_INFO("Move down first hallway");
+for (int i=0;i<niters;i++) {
+    cmd_publisher.publish(twist_cmd); // really, should only need to publish this once, but no hard done
+    sleep_timer.sleep(); // sleep for (remainder of) 10m
+}
+
+
+twist_cmd.linear.x = 0.0;
+twist_cmd.angular.z = -0.314;
+niters=500; // 5 sec
+ROS_INFO("Rotate down second hallway");
+for (int i=0;i<niters;i++) {
+    cmd_publisher.publish(twist_cmd); // really, should only need to publish this once, but no hard done
+    sleep_timer.sleep(); // sleep for (remainder of) 10m
+}
+
+
+twist_cmd.linear.x = 0.4;
+twist_cmd.angular.z = 00.000;
+niters=2100; // 5 sec
+ROS_INFO("Drive forwards to the Vending Machines");
+for (int i=0;i<niters;i++) {
+    cmd_publisher.publish(twist_cmd); // really, should only need to publish this once, but no hard done
+    sleep_timer.sleep(); // sleep for (remainder of) 10m
+}
+
+
+twist_cmd.linear.x = 0.0;
+twist_cmd.angular.z = -00.3140;
+niters=500; // 5 sec
+ROS_INFO("Turn to the Vending Machines");
+for (int i=0;i<niters;i++) {
+    cmd_publisher.publish(twist_cmd); // really, should only need to publish this once, but no hard done
+    sleep_timer.sleep(); // sleep for (remainder of) 10m
+}
+ROS_INFO("My work is done");
+
+
 //while (ros::ok()) 
-{
+
 twist_cmd.linear.x = 0.0;
 twist_cmd.angular.z = 0;
+ while (ros::ok()) {
 cmd_publisher.publish(twist_cmd); // and halt
 }
 
